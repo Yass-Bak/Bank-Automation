@@ -22,6 +22,7 @@ services:
       - SPRING_JWT_SECRET_KEY=mySecretKey
     depends_on:
       - db
+    entrypoint: ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "app.jar"]
 
   db:
     image: mysql:8.0
