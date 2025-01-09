@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    networks:
+      - mynetwork
     depends_on:
       - backend
 
@@ -20,6 +22,8 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_JWT_SECRET_KEY=mySecretKey
+    networks:
+      - mynetwork
     depends_on:
       - db
     entrypoint: ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "app.jar"]
@@ -29,14 +33,20 @@ services:
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bankdb  # Creates the bankdb database
+      MYSQL_DATABASE: bankdb
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
+    networks:
+      - mynetwork
     volumes:
       - db_data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
+
+networks:
+  mynetwork:
+    driver: bridge
 
 volumes:
   db_data:
