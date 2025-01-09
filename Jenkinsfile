@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         DOCKERHUB_USERNAME = 'yasinbk'  // Replace with your Docker Hub username
-        DOCKERHUB_PASSWORD = credentials('dockerhub-password')  // Replace with Jenkins credential ID for Docker Hub password
+        DOCKERHUB_PASSWORD = credentials('dockerhub-credentials')  // Correct credential ID for Docker Hub password
         VM2_USER = 'vagrant'           // Replace with VM2 SSH user
-        VM2_IP = '192.168.65.202'     // Replace with VM2 IP address
+        VM2_IP = '192.168.91.202'     // Replace with VM2 IP address
         VM2_APP_PATH = '~/app'        // Directory on VM2 to deploy
     }
 
@@ -61,7 +61,9 @@ pipeline {
 
     post {
         always {
-            cleanWs()
+            node {
+                cleanWs()
+            }
         }
     }
 }
