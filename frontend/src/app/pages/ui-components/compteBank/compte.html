@@ -1,0 +1,47 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title>Ajouter un Compte</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <div class="row">
+        <!-- Champ RIB -->
+        <div class="col-lg-4 col-sm-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>RIB</mat-label>
+            <input matInput type="text" placeholder="Entrer le RIB" />
+          </mat-form-field>
+        </div>
+
+        <!-- Champ Solde -->
+        <div class="col-lg-4 col-sm-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Solde</mat-label>
+            <input matInput type="number" placeholder="Entrer le solde" />
+          </mat-form-field>
+        </div>
+
+        <!-- Sélectionner un client -->
+        <div class="col-lg-4 col-sm-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Client</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let client of clients" [value]="client.id">
+                {{ client.nom }} {{ client.prenom }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Bouton Ajouter -->
+      <div class="row m-t-16">
+        <div class="col-lg-12">
+          <button mat-flat-button color="primary" type="button">
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

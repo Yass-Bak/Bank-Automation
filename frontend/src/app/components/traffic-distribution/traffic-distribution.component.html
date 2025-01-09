@@ -1,0 +1,64 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <mat-card-title>Traffic clients</mat-card-title>
+      <div class="row m-t-24">
+        <div class="col-7">
+          <!-- Section pour afficher le nombre de clients -->
+          <div class="m-t-32">
+            <h4 class="mat-headline-5 f-s-24">Nombre de clients</h4>
+            <p class="mat-body-1">Clients disponibles : {{ clientCount }}</p>
+          </div>
+  
+        </div>
+       
+        <div class="col-5 d-flex align-items-start">
+          <apx-chart
+            [series]="trafficdistributionChart.series"
+            [labels]="trafficdistributionChart.labels"
+            [dataLabels]="trafficdistributionChart.dataLabels"
+            [chart]="trafficdistributionChart.chart"
+            [legend]="trafficdistributionChart.legend"
+            [colors]="trafficdistributionChart.colors"
+            [stroke]="trafficdistributionChart.stroke"
+            [tooltip]="trafficdistributionChart.tooltip"
+            [plotOptions]="trafficdistributionChart.plotOptions"
+            [responsive]="trafficdistributionChart.responsive">
+          </apx-chart>
+        </div>
+      </div>
+    </mat-card-content>
+   
+  </mat-card>
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <mat-card-title>Traffic comptes</mat-card-title>
+      <div class="row m-t-24">
+       
+        <div class="col-7">
+           
+    
+            <!-- Section pour afficher le nombre de comptes -->
+            <div class="m-t-32">
+              <h4 class="mat-headline-5 f-s-24">Nombre de comptes</h4>
+              <p class="mat-body-1">Comptes disponibles : {{ compteCount }}</p>
+            </div>
+          </div>
+        <div class="col-5 d-flex align-items-start">
+          <apx-chart
+            [series]="trafficdistributionChart.series"
+            [labels]="trafficdistributionChart.labels"
+            [dataLabels]="trafficdistributionChart.dataLabels"
+            [chart]="trafficdistributionChart.chart"
+            [legend]="trafficdistributionChart.legend"
+            [colors]="trafficdistributionChart.colors"
+            [stroke]="trafficdistributionChart.stroke"
+            [tooltip]="trafficdistributionChart.tooltip"
+            [plotOptions]="trafficdistributionChart.plotOptions"
+            [responsive]="trafficdistributionChart.responsive">
+          </apx-chart>
+        </div>
+      </div>
+    </mat-card-content>
+   
+  </mat-card>
+  

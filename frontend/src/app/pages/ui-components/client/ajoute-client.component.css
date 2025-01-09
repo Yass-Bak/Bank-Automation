@@ -1,0 +1,31 @@
+/* Custom Button Styles */
+.custom-btn {
+  display: inline-block;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  background-color: #007bff; /* Bootstrap Primary Color */
+  border: 1px solid #007bff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 2rem; /* Bootstrap border-radius */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 10%; /* Full width */
+}
+
+.custom-btn:hover {
+  background-color: #0056b3; /* Darker blue for hover */
+  border-color: #0056b3;
+}
+
+.custom-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); /* Focus effect */
+}
+
+.custom-btn:disabled {
+  background-color: #c6d0d8;
+  border-color: #c6d0d8;
+  cursor: not-allowed;
+}
