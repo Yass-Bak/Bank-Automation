@@ -35,8 +35,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: bankdb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: user1
     healthcheck:
       test: ["CMD-SHELL", "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""]
       interval: 30s
