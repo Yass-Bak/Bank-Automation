@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                 docker-compose up -d
-                docker-compose exec -T backend mvn test  # Ajout du flag -T
+                docker run --rm --network=bank-automation_mynetwork bank-automation_backend mvn test
                 docker-compose down
                 '''
             }
