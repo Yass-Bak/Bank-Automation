@@ -25,7 +25,8 @@ services:
     networks:
       - mynetwork
     depends_on:
-      - db
+      - db:
+          condition: service_healthy
     entrypoint: ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "app.jar"]
 
   db:
@@ -36,6 +37,11 @@ services:
       MYSQL_DATABASE: bankdb
       MYSQL_USER: root
       MYSQL_PASSWORD: root
+      healthcheck:
+      test: ["CMD-SHELL", "/usr/bin/mysql --user=webrest-user --password=secret --execute \"SHOW DATABASES;\""]
+      interval: 30s
+      timeout: 10s
+      retries: 10
     ports:
       - "3306:3306"
     networks:
