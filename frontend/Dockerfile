@@ -1,9 +1,17 @@
 # Build Angular app
 FROM node:18 AS build
 WORKDIR /app
+
+# Copy only the package.json and package-lock.json
 COPY package*.json ./
-RUN npm install
+
+# Install dependencies with legacy-peer-deps to handle conflicts
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the application
 COPY . .
+
+# Build the Angular app for production
 RUN npm run build --prod
 
 # Serve with NGINX
