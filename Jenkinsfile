@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USERNAME = 'yasinbk' // Replace with your Docker Hub username
-        DOCKERHUB_PASSWORD = '123456789a' // Replace with your Docker Hub password
-        VM2_USER = 'vagrant'                               // Replace with VM2 SSH user
-        VM2_IP = '192.168.65.202'                       // Replace with VM2 IP address
-        VM2_APP_PATH = '~/app'                          // Directory on VM2 to deploy
+        DOCKERHUB_USERNAME = 'yasinbk'  // Replace with your Docker Hub username
+        DOCKERHUB_PASSWORD = credentials('dockerhub-password')  // Replace with Jenkins credential ID for Docker Hub password
+        VM2_USER = 'vagrant'           // Replace with VM2 SSH user
+        VM2_IP = '192.168.65.202'     // Replace with VM2 IP address
+        VM2_APP_PATH = '~/app'        // Directory on VM2 to deploy
     }
 
     stages {
