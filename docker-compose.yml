@@ -29,7 +29,7 @@ services:
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bankdb
+      MYSQL_DATABASE: bankdb  # Creates the bankdb database
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     ports:
