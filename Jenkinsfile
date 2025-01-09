@@ -7,6 +7,7 @@ pipeline {
         VM2_USER = 'vagrant'           // Replace with VM2 SSH user
         VM2_IP = '192.168.91.202'     // Replace with VM2 IP address
         VM2_APP_PATH = '~/app'        // Directory on VM2 to deploy
+        DOCKER_CLI_EXPERIMENTAL = "enabled"
     }
 
     stages {
