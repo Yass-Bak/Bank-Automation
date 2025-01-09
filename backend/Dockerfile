@@ -1,17 +1,20 @@
-# Use a Maven image with OpenJDK 17 for the build stage
+# Build Stage: Use a Maven image with OpenJDK 17 for building the application
 FROM maven:3.9.5-eclipse-temurin-17 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the pom.xml and source code into the container
-COPY pom.xml .
+# Copy only the pom.xml and download dependencies (cache optimization)
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
+
+# Copy the source code into the container
 COPY src ./src
 
-# Build the application
-RUN mvn clean install
+# Build the application without running tests (for CI/CD pipelines)
+RUN mvn clean package -DskipTests
 
-# Use a slim OpenJDK image for the runtime stage
+# Runtime Stage: Use a slim OpenJDK image for running the application
 FROM eclipse-temurin:17-jdk-slim
 
 # Set the working directory in the container
@@ -20,11 +23,9 @@ WORKDIR /app
 # Copy the built JAR file from the build stage
 COPY --from=build /app/target/BankApi.jar app.jar
 
-RUN mvn clean install -DskipTests
-
-# Install dockerize
+# Install dockerize for waiting on dependencies (e.g., MySQL)
 RUN apt-get update && \
-    apt-get install -y wget && \
+    apt-get install -y --no-install-recommends wget && \
     wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && \
     tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz && \
     rm dockerize-linux-amd64-v0.6.1.tar.gz && \
@@ -35,5 +36,5 @@ RUN apt-get update && \
 # Expose the port the app will run on
 EXPOSE 8080
 
-# Run the application with dockerize
+# Set the entry point to run the application with dockerize
 ENTRYPOINT ["dockerize", "-wait", "tcp://db:3306", "-timeout", "300s", "java", "-jar", "app.jar"]
