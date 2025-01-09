@@ -1,5 +1,5 @@
-# Use an official Maven image to build the application
-FROM maven:3.8.6-openjdk-17-slim AS build
+# Use a Maven image with OpenJDK 17
+FROM maven:3.9.5-eclipse-temurin-17 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -8,11 +8,11 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Build the application (this will generate the BankApi.jar in the target folder)
+# Build the application
 RUN mvn clean install
 
-# Use a slim OpenJDK image to run the application
-FROM openjdk:17-jdk-slim
+# Use a slim OpenJDK image for the runtime
+FROM eclipse-temurin:17-jdk-slim
 
 # Set the working directory in the container
 WORKDIR /app
