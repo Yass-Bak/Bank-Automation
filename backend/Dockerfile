@@ -20,6 +20,8 @@ WORKDIR /app
 # Copy the built JAR file from the build stage
 COPY --from=build /app/target/BankApi.jar app.jar
 
+RUN mvn clean install -DskipTests
+
 # Install dockerize
 RUN apt-get update && \
     apt-get install -y wget && \
