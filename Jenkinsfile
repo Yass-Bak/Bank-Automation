@@ -62,7 +62,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no $VM2_USER@$VM2_IP "
                         cd $VM2_APP_PATH &&
                         sudo docker-compose pull &&
-                        sudo docker-compose up -d
+                        sudo docker-compose up -d --build
                     "
                     '''
                 }
