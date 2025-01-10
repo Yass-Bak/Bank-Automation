@@ -61,8 +61,8 @@ pipeline {
                     scp docker-compose.yml $VM2_USER@$VM2_IP:$VM2_APP_PATH/
                     ssh -o StrictHostKeyChecking=no $VM2_USER@$VM2_IP "
                         cd $VM2_APP_PATH &&
-                        docker-compose pull &&
-                        docker-compose up -d
+                        sudo docker-compose pull &&
+                        sudo docker-compose up -d
                     "
                     '''
                 }
