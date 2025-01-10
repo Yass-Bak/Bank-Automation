@@ -118,7 +118,7 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.example.BankAppApplication</mainClass> <!-- Replace with your main class -->
+                                    <mainClass>tn.iit.BankAppApplication</mainClass> <!-- Replace with your main class -->
                                 </transformer>
                             </transformers>
                         </configuration>
