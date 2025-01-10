@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                 docker-compose up -d
-                docker-compose exec -T backend  //mvn test
+                docker-compose exec -T backend  
                 docker-compose down
                 '''
             }
