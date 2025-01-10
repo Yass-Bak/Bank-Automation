@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
+
 RUN npm install --legacy-peer-deps
 
 # Build the Angular app
