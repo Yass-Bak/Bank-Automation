@@ -57,9 +57,9 @@ pipeline {
             steps {
                 sshagent(['vm2-ssh-credentials']) {
                     sh '''
-                    ssh $VM2_USER@$VM2_IP "mkdir -p $VM2_APP_PATH"
+                    ssh -o StrictHostKeyChecking=no $VM2_USER@$VM2_IP "mkdir -p $VM2_APP_PATH"
                     scp docker-compose.yml $VM2_USER@$VM2_IP:$VM2_APP_PATH/
-                    ssh $VM2_USER@$VM2_IP "
+                    ssh -o StrictHostKeyChecking=no $VM2_USER@$VM2_IP "
                         cd $VM2_APP_PATH &&
                         docker-compose pull &&
                         docker-compose up -d
