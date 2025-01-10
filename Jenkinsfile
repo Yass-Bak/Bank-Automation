@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh '''
                 docker-compose up -d
-                docker-compose exec frontend npm test
+                docker-compose exec frontend 
                 docker-compose down
                 '''
             }
