@@ -23,11 +23,22 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Backend Tests') {
             steps {
                 sh '''
                 docker-compose up -d
-                docker run --rm --network=bank-automation_mynetwork bank-automation_backend mvn test
+                docker-compose exec backend mvn test
+                docker-compose down
+                '''
+            }
+        }
+
+        stage('Run Frontend Tests') {
+            steps {
+                sh '''
+                docker-compose up -d
+                docker-compose exec frontend npm install
+                docker-compose exec frontend npm test
                 docker-compose down
                 '''
             }
