@@ -57,8 +57,16 @@ pipeline {
             steps {
                 sshagent(['vm2-ssh-credentials']) {
                     sh '''
+                    # Create the app directory on the remote machine
                     ssh -o StrictHostKeyChecking=no $VM2_USER@$VM2_IP "mkdir -p $VM2_APP_PATH"
+        
+                    # Copy the docker-compose.yml file
                     scp docker-compose.yml $VM2_USER@$VM2_IP:$VM2_APP_PATH/
+        
+                    # Copy the backend and frontend directories
+                    scp -r backend frontend $VM2_USER@$VM2_IP:$VM2_APP_PATH/
+        
+                    # Execute Docker Compose on the remote machine
                     ssh -o StrictHostKeyChecking=no $VM2_USER@$VM2_IP "
                         cd $VM2_APP_PATH &&
                         sudo docker-compose pull &&
@@ -67,7 +75,7 @@ pipeline {
                     '''
                 }
             }
-        }
+}
     }
 
     post {
