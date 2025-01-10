@@ -23,6 +23,9 @@ WORKDIR /app
 # Copier le fichier JAR généré depuis l'étape de build
 COPY --from=build /app/target/BankApp-0.0.1-SNAPSHOT.jar app.jar
 
+# Installer Maven dans l'image runtime pour exécuter les tests
+RUN apk add --no-cache maven
+
 # Installer Dockerize pour attendre les dépendances (par exemple, MySQL)
 RUN apk add --no-cache wget && \
     wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && \
