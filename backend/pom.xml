@@ -17,7 +17,6 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!-- Correct placement of spring-framework-bom -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
